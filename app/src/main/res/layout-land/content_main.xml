@@ -58,6 +58,13 @@
             android:id="@+id/addButton"
             android:text="Add" />
 
+        <Button
+
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/deleteButton"
+            android:text="Delete" />
 
     </LinearLayout>
 

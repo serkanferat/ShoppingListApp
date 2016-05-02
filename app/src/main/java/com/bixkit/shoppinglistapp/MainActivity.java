@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         Button addButton = (Button) findViewById(R.id.addButton);
-
+        Button deleteButton = (Button) findViewById(R.id.deleteButton);
 
         int position = -1;
         if (savedInstanceState!=null)
@@ -105,9 +105,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //delete button for a checked item
+        deleteButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
 
+                saveCopy(); //save a copy of the item selected before you delete it
+                int index = listView.getCheckedItemPosition();
+                bag.remove(index);
+                getMyAdapter().notifyDataSetChanged();
 
+                final View parent = listView;
+                Snackbar snackbar = Snackbar
+                        .make(listView, "Item Deleted", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                bag.add(lastDeletedPosition, lastDeletedProduct);
+                                getMyAdapter().notifyDataSetChanged();
+                                Snackbar snackbar = Snackbar.make(listView, "Item restored!", Snackbar
+                                        .LENGTH_SHORT);
+                                snackbar.show();
+                            }
+                        });
+                snackbar.show();
+
+            }
+        });
 
 
     }
@@ -123,29 +148,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //delete button for a checked item
-    public void onClickDelete(View view){
-        saveCopy(); //save a copy of the item selected before you delete it
-        int index = listView.getCheckedItemPosition();
-        bag.remove(index);
 
-        Snackbar snackbar = Snackbar
-                .make(listView, "Item Deleted", Snackbar.LENGTH_LONG)
-                .setAction("UNDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        bag.add(lastDeletedPosition, lastDeletedProduct);
-                        getMyAdapter().notifyDataSetChanged();
-                        Snackbar snackbar = Snackbar.make(listView, "Item restored!", Snackbar
-                                .LENGTH_SHORT);
-                        snackbar.show();
-                    }
-                });
-        snackbar.show();
 
-        //you use getMyAdapter so that the app doesn't crash after changes
-        getMyAdapter().notifyDataSetChanged();
-    }
+
 
 
 
