@@ -60,12 +60,7 @@
             android:layout_weight="1"
             android:entries="@array/chooseAmount"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/addButton"
-            android:text="Add" />
+
 
 
 
@@ -80,6 +75,14 @@
         android:orientation="horizontal"
         android:padding="10dp" >
 
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:id="@+id/addButton"
+            android:text="Add" />
+
         <Button
 
             android:layout_weight="1"
@@ -88,18 +91,11 @@
             android:id="@+id/deleteButton"
             android:text="Delete item" />
 
-        <Button
-
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:id="@+id/clearButton"
-            android:text="Clear List" />
 
 
     </LinearLayout>
 
- 
+
 
     <ListView
         android:id="@+id/list"

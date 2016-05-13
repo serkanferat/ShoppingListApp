@@ -315,6 +315,20 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public String convertListToString()
+    {
+        String result = "This is the shopping items: \n";
+        for (int i = 0; i<adapter.getCount();i++)
+        {
+            Product p = (Product) adapter.getItem(i);
+
+            result += p.getListQuantity() + " " + p.getProductName() + "\n";
+
+        }
+        return result;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -343,6 +357,16 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_settings:
                 setPreferences();
+                return true;
+
+            case R.id.menu_item_share:
+                String listToShare = convertListToString();
+                Intent sendIntent = new Intent();
+
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, listToShare);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
                 return true;
         }
 
