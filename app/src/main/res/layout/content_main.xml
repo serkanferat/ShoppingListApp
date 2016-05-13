@@ -49,7 +49,16 @@
             android:inputType="number"
             android:hint="Quantity"
             android:ems="10"
+            android:text = "0"
             android:id="@+id/insertedItemQuantity" />
+
+
+        <Spinner
+            android:id="@+id/dropDownAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/chooseAmount"/>
 
         <Button
             android:layout_width="0dp"
@@ -57,6 +66,9 @@
             android:layout_weight="1"
             android:id="@+id/addButton"
             android:text="Add" />
+
+
+
 
 
 
@@ -76,8 +88,18 @@
             android:id="@+id/deleteButton"
             android:text="Delete item" />
 
+        <Button
+
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/clearButton"
+            android:text="Clear List" />
+
 
     </LinearLayout>
+
+ 
 
     <ListView
         android:id="@+id/list"
